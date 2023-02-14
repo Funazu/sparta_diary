@@ -34,6 +34,7 @@ def save_diary():
 
     today = datetime.now()
     time = today.strftime('%Y-%m-%d-%H-%M-%S')
+    timenow = today.strftime('%Y.m.%d')
 
     file = request.files['file']
     extension = file.filename.split('.')[-1]
@@ -53,7 +54,8 @@ def save_diary():
         'file': filename,
         'profile': profilename,
         'title': title,
-        'content': content
+        'content': content,
+        'timenow': timenow,
     }
     db.diary.insert_one(data)
     return jsonify({ 'message': 'disampaikan' })
